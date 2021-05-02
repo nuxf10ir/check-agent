@@ -151,24 +151,20 @@ jQuery.fn.cardGame = function(data) {
 
     return {
         init: function () {
-            setTimeout(function () {
-                $card.flip(flipDirection);
-            }, 1000);
+            $([
+                'i/bg.png',
+                'i/start.png',
+                'i/success.png',
+                'i/fault.png'
+            ])
+                .preload(function() {
+                    $card.flip(flipDirection);
+                });
         }
     }
 };
 
-jQuery(document).ready(function() {
-    $([
-        'i/bg.png',
-        'i/start.png',
-        'i/success.png',
-        'i/fault.png'
-    ])
-        .preload(function() {
-            $("#cardgame").cardGame(gameData).init();
-        });
-});
+$("#cardgame").cardGame(gameData).init();
 
 
 
