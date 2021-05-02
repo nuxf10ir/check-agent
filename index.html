@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Финансовый директор</title>
+    <link rel="stylesheet" type="text/css" href="css/loader.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__in">
+            <div id="cardgame" class="cardgame">
+                <div class="cardgame__in">
+                    <div id="card" class="card">
+                        <div id="card-front" class="front">
+                            <div class="card-content card-loader" >
+                                <div class="lds-css ng-scope">
+                                    <div class="lds-ripple">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="card-back" class="back">
+                            <div class="card-content card-content__type-start">
+                                <div class="card-content-wrapper">
+                                    <div class="card-content__text">
+                                        <p>
+                                            Вам предстоит проверить, как налажена проверка контрагентов и&nbsp;сделок
+                                            в&nbsp;компании, и&nbsp;при необходимости внести изменения в&nbsp;регламент.
+                                            Начнем с&nbsp;беседы с&nbsp;коммерческим директором, он&nbsp;точно в&nbsp;курсе
+                                            порядка проверки контрагентов.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="card-button js-to-start" data-question="1">Вперед!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script id="question__tmpl" type="text/x-javascript-tmpl">
+        <div class="card-content card-content__type-question card-content__type-question_{{id}}">
+            <div class="card-content-wrapper">
+                <ul class="card-content_variants">
+                    {[ _.each(variants, function(variant) { ]}
+                        <li class="card-content_variant">
+                            <a class="js-set-answer"
+                                data-next={{variant.next}}
+                                data-question="{{id}}"
+                                data-num="{{variant.num}}">
+                                {{variant.text}}
+                            </a>
+                        </li>
+                    {[ }); ]}
+                </ul>
+            </div>
+        </div>
+    </script>
+
+    <script id="finish__tmpl" type="text/x-javascript-tmpl">
+        <div class="card-content card-content__type-finish">
+            <div class="card-content-wrapper">
+                <div class="card-content__title">Квест начинается!</div>
+                <div class="card-content__text">
+                    <p>
+                        Итак, после того, как вы&nbsp;провели ревизию порядка проверки контрагентов, прошел уже год.
+                        Все ваши замечания коллеги учли и&nbsp;внедрили в&nbsp;работу. И&nbsp;вот, налоговая
+                        заинтересовалась сделкой с&nbsp;несколькими поставщиками и&nbsp;заподозрила нарушения
+                        по&nbsp;статье 54.1.
+                    </p>
+                    <p>
+                        Налоговики при проверке действуют поэтапно.
+                    </p>
+                    <p>
+                        На&nbsp;первом этапе вам предстоит доказать реальность сделки&nbsp;&mdash; что
+                        вы&nbsp;действительно получили товары и&nbsp;услуги, указанные в&nbsp;документах.
+                    </p>
+                    <p>
+                        На&nbsp;втором придется привести доказательства, что контрагент&nbsp;&mdash;
+                        не&nbsp;&laquo;техничка&raquo;, а&nbsp;вы&nbsp;проявили должную осмотрительность,
+                        когда заключали с&nbsp;ним договор.
+                    </p>
+                    <p>
+                        Посмотрим, как принятые Вами решения помогут пройти этот квест!
+                    </p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="card-button js-to-answer" data-answer="firstRound">Узнать результаты!</a>
+            </div>
+        </div>
+    </script>
+
+    <script id="answer-fault__tmpl" type="text/x-javascript-tmpl">
+        <div class="card-content card-content__type-answer">
+            <div class="card-content-wrapper">
+                <div class="card-content__title">{{title}}</div>
+                <div class="card-content__text">
+                    {[ _.each(content, function(paragraph) { ]}
+                        <p>
+                            {{paragraph}}
+                        </p>
+                    {[ }); ]}
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="card-button js-to-start" data-question="1">Начать сначала</a>
+            </div>
+        </div>
+    </script>
+
+    <script id="answer-success__tmpl" type="text/x-javascript-tmpl">
+        <div class="card-content card-content__type-answer">
+            <div class="card-content-wrapper">
+                <div class="card-content__title">{{title}}</div>
+                <div class="card-content__text">
+                    {[ _.each(content, function(paragraph) { ]}
+                        <p>
+                            {{paragraph}}
+                        </p>
+                    {[ }); ]}
+                </div>
+            </div>
+            <div class="card-footer">
+                {[ if (toFinalQuest) { ]}
+                    <a class="card-button js-to-start" data-question="1">Начать сначала!</a>
+                    <a class="card-button" target="_top" href="https://school.fd.ru/tests/200581/21880129">Пройти финальный тест </a>
+                {[ } else { ]}
+                    <a class="card-button js-to-answer" data-answer="secondRound">Следующий раунд</a>
+                {[ } ]}
+            </div>
+        </div>
+    </script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="js/jquery.flip.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
